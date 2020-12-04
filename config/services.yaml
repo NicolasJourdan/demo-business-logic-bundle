@@ -1,18 +1,10 @@
-# This file is the entry point to configure your own services.
-# Files in the packages/ subdirectory configure your dependencies.
-
-# Put parameters here that don't need to change on each machine where the app is deployed
-# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
 
 services:
-    # default configuration for services in *this* file
     _defaults:
-        autowire: true      # Automatically injects dependencies in your services.
-        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        autowire: true
+        autoconfigure: true
 
-    # makes classes in src/ available to be used as services
-    # this creates a service per class whose id is the fully-qualified class name
     App\:
         resource: '../src/'
         exclude:
@@ -21,11 +13,29 @@ services:
             - '../src/Kernel.php'
             - '../src/Tests/'
 
-    # controllers are imported separately to make sure services can be injected
-    # as action arguments even if you don't extend any base controller class
     App\Controller\:
         resource: '../src/Controller/'
         tags: ['controller.service_arguments']
 
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
+    App\Controller\UserController:
+        tags: [controller.service_arguments]
+        bind:
+            $rulesEngineChristmas: '@rules_engine.user.christmas'
+            $rulesEngineNewBettor: '@rules_engine.user.new_bettor'
+
+#    # Rules#
+    App\Service\Rule\User\NewBettorBonusRule:
+        tags:
+            - { name: 'rule_user.christmas', priority: 20 }
+            - 'rule_user.vip'
+
+    # RulesEngines
+    rules_engine.user.christmas:
+        class: NicolasJourdan\BusinessLogicBundle\Service\Rule\RulesEngine
+        arguments:
+            $rules: !tagged rule_user.christmas
+
+    rules_engine.user.new_bettor:
+        class: NicolasJourdan\BusinessLogicBundle\Service\Rule\RulesEngine
+        arguments:
+            $rules: !tagged rule_user.new_bettor
