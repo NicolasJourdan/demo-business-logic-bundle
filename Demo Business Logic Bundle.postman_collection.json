@@ -1,0 +1,65 @@
+{
+	"info": {
+		"_postman_id": "15039320-f2bb-40ef-826c-5136ffc66dd3",
+		"name": "Demo Business Logic Bundle",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Christmas",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/users/christmas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"users",
+						"christmas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New bettor",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/users/new_bettor",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"users",
+						"new_bettor"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

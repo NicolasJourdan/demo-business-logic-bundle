@@ -3,7 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\User;
-use App\Service\Specification\User\IsVIP;
+use App\Specification\User\IsVIP;
 use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;

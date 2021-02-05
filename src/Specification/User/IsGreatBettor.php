@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service\Specification\User;
+namespace App\Specification\User;
 
 use App\Entity\User;
 use NicolasJourdan\BusinessLogicBundle\Service\Specification\CompositeSpecification;
@@ -8,7 +8,7 @@ use NicolasJourdan\BusinessLogicBundle\Service\Specification\CompositeSpecificat
 /**
  * Class IsGreatBettor
  *
- * @package App\Service\Specification\User
+ * @package App\Specification\User
  */
 class IsGreatBettor extends CompositeSpecification
 {

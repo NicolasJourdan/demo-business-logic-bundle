@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Service\Rule\User;
+namespace App\Rule\User;
 
 use App\Entity\User;
-use App\Service\Specification\User\IsGreatBettor;
+use App\Specification\User\IsGreatBettor;
 use NicolasJourdan\BusinessLogicBundle\Service\Rule\RuleInterface;
 
 /**
  * Class GreatBettorBonusRule
  *
- * @package App\Service\Rule\User
+ * @package App\Rule\User
  */
 class GreatBettorBonusRule implements RuleInterface
 {

@@ -1,23 +1,21 @@
 <?php
 
-namespace App\Service\Specification\User;
+namespace App\Specification\User;
 
 use App\Entity\User;
 use NicolasJourdan\BusinessLogicBundle\Service\Specification\CompositeSpecification;
 
 /**
- * Class IsRich
+ * Class IsVIP
  *
- * @package App\Service\Specification\User
+ * @package App\Specification\User
  */
-class IsRich extends CompositeSpecification
+class IsVIP extends CompositeSpecification
 {
-    const MINIMUM_RICH_AMOUNT = 10000;
+    const VIP_KEY = 'IS_VIP';
 
     /**
-     * @param $candidate
-     *
-     * @return bool
+     * {@inheritDoc}
      */
     public function isSatisfiedBy($candidate): bool
     {
@@ -27,6 +25,6 @@ class IsRich extends CompositeSpecification
             );
         }
 
-        return $candidate->getMoney() >= self::MINIMUM_RICH_AMOUNT;
+        return in_array(self::VIP_KEY, $candidate->getRoles());
     }
 }
