@@ -1,29 +1,29 @@
 <?php
 
-namespace App\Service\Rule\User;
+namespace App\Rule\User;
 
 use App\Entity\User;
-use App\Service\Specification\User\IsRich;
-use App\Service\Specification\User\IsVIP;
+use App\Specification\User\IsNew;
+use App\Specification\User\IsRich;
 use NicolasJourdan\BusinessLogicBundle\Service\Rule\RuleInterface;
 
 /**
- * Class VIPBonusRule
+ * Class NewBettorRule
  *
- * @package App\Service\Rule\User
+ * @package App\Rule\User
  */
-class VIPBonusRule implements RuleInterface
+class NewBettorBonusRule implements RuleInterface
 {
-    const BONUS = 10;
+    const BONUS = 100;
 
     private const BUSINESS_LOGIC_TAGS = [
-        ['rule_user.christmas'],
+        ['rule_user.new_bettor'],
     ];
 
     /**
-     * @var IsVIP $isVIPSpecification
+     * @var IsNew $isNewSpecification
      */
-    private $isVIPSpecification;
+    private $isNewSpecification;
 
     /**
      * @var IsRich $isRichSpecification
@@ -31,14 +31,14 @@ class VIPBonusRule implements RuleInterface
     private $isRichSpecification;
 
     /**
-     * VIPBonusRule constructor.
+     * NewBettorRule constructor.
      *
-     * @param IsVIP $isVIPSpecification
+     * @param IsNew $isNewSpecification
      * @param IsRich $isRichSpecification
      */
-    public function __construct(IsVIP $isVIPSpecification, IsRich $isRichSpecification)
+    public function __construct(IsNew $isNewSpecification, IsRich $isRichSpecification)
     {
-        $this->isVIPSpecification = $isVIPSpecification;
+        $this->isNewSpecification = $isNewSpecification;
         $this->isRichSpecification = $isRichSpecification;
     }
 
@@ -47,7 +47,7 @@ class VIPBonusRule implements RuleInterface
      */
     public function shouldRun($candidate): bool
     {
-        return $this->isVIPSpecification
+        return $this->isNewSpecification
             ->and($this->isRichSpecification->not())
             ->isSatisfiedBy($candidate)
         ;
@@ -61,4 +61,13 @@ class VIPBonusRule implements RuleInterface
         /** @var User $candidate */
         return $candidate->setMoney($candidate->getMoney() + self::BONUS);
     }
+
+    public function getTags(): array
+    {
+        return [
+            ['rule.christmas'],
+            ['rule.salut'],
+        ];
+    }
+
 }

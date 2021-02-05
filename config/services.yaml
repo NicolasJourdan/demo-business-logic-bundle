@@ -24,7 +24,7 @@ services:
             $rulesEngineNewBettor: '@rules_engine.user.new_bettor'
 
 #    # Rules#
-    App\Service\Rule\User\NewBettorBonusRule:
+    App\Rule\User\NewBettorBonusRule:
         tags:
             - { name: 'rule_user.christmas', priority: 20 }
             - 'rule_user.vip'
